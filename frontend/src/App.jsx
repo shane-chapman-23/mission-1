@@ -1,3 +1,7 @@
+import Chatbot from "./components/Chatbot";
+
+import styles from "./App.module.css";
+
 function App() {
   return (
     <>
@@ -5,6 +9,7 @@ function App() {
         TURNERS CAR <br />
         INSURANCE
       </h1>
+      <Chatbot />
     </>
   );
 }
