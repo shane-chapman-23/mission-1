@@ -15,8 +15,20 @@ export default function Chatbot() {
     prepareImageForBackend(file);
   };
 
-  const prepareImageForBackend = (file) => {
-    console.log("Ready to send to backend:", file);
+  const prepareImageForBackend = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await fetch("http://localhost:5000/", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      console.log("Backend response:", data);
+    } catch (err) {
+      console.error("Upload failed:", err);
+    }
   };
 
   //Before uploading a new image the useEffect will revoke the previous imageURL to prevent memory leakage
@@ -31,21 +43,26 @@ export default function Chatbot() {
 
   return (
     <div className={styles.chatbotContainer}>
-      <div className={styles.chatWindow}>
-        {" "}
-        {imagePreview ? (
+      <div className={styles.output}>
+        <p>Welcome to TURNERS CAR INSURANCE Premium Analysis Unit.</p>
+        <p>Please upload an image of a car</p>
+        <br />
+      </div>
+      <label className={styles.uploadImageContainer}>
+        Select Image
+        <input type="file" accept="image/*" onChange={handleImageUpload} />
+      </label>
+      {imagePreview ? (
+        <div className={styles.imagePreviewContainer}>
           <img
             src={imagePreview}
             alt="Uploaded image"
-            className={styles.previewImage}
+            className={styles.imagePreview}
           />
-        ) : (
-          "Please upload an image"
-        )}
-      </div>
-      <form className={styles.textInputContainer}>
-        <input type="file" accept="image/*" onChange={handleImageUpload} />
-      </form>
+        </div>
+      ) : (
+        "Please upload an image"
+      )}
     </div>
   );
 }

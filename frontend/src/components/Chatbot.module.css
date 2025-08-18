@@ -1,49 +1,64 @@
 .chatbotContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 10px;
 
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  height: 500px;
-  width: 350px;
+  height: 100vh;
+  width: 100vw;
 
-  border: 2px solid black;
-  border-radius: 10px;
-
-  background-color: blue;
+  background-color: black;
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.2;
 }
 
-.chatWindow {
+.output {
   position: relative;
-  top: 10px;
-  height: 430px;
-  width: 330px;
+  top: 20px;
+  left: 20px;
+  width: 50%;
 
   border-radius: 10px;
-
-  background-color: white;
 }
 
-.textInputContainer {
+.uploadImageContainer {
+  position: relative;
+  left: 20px;
+  top: 15px;
+  width: 110px;
+  height: 21px;
+
+  display: inline-block;
+
+  background-color: #00ff00;
+
+  font-family: monospace;
+  color: #000;
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.uploadImageContainer input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.imagePreviewContainer {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  gap: 10px;
-
-  height: 50px;
-  width: 330px;
+  justify-content: center;
+  align-items: center;
 }
 
-.textInputContainer input {
-  height: 50px;
-  width: 270px;
-}
-
-.textInputContainer button {
-  height: 50px;
-  width: 50px;
-
-  border: none;
-  border-radius: 50%;
+.imagePreview {
 }
