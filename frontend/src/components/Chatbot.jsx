@@ -34,10 +34,13 @@ export default function Chatbot() {
       setLoading(true);
       setResult(null);
 
-      const res = await fetch("http://localhost:5000/", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        "https://mission-1-backend-fsaza3fabcdxffab.newzealandnorth-01.azurewebsites.net/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await res.json();
 
