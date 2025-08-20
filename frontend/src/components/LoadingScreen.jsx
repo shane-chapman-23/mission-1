@@ -2,7 +2,12 @@ import {useState, useEffect} from "react";
 
 export default function LoadingScreen() {
   const [currentGif, setCurrentGif] = useState(0);
-  const gifs = ["/binary.gif", "/ai_head.gif", "/hacker_dancing.gif"];
+  const gifs = [
+    "/binary.gif",
+    "/ai_head.gif",
+    "/hacker_dancing.gif",
+    "/spykids_enhance.gif",
+  ];
 
   //Change GIF every 1 second
   useEffect(() => {
