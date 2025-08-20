@@ -7,6 +7,7 @@ export default function Chatbot() {
   const [imagePreview, setImagePreview] = useState(null);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [fileName, setFileName] = useState("");
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -15,7 +16,14 @@ export default function Chatbot() {
     const imageUrl = URL.createObjectURL(file);
     setImagePreview(imageUrl);
 
+    setFileName(file.name);
+
     uploadAndAnalyzeImage(file);
+  };
+
+  const shortenFileName = (name, maxLength = 19) => {
+    if (fileName.length <= maxLength) return fileName;
+    return fileName.slice(0, maxLength - 3) + "...";
   };
 
   const uploadAndAnalyzeImage = async (file) => {
@@ -63,16 +71,20 @@ export default function Chatbot() {
     <div className={styles.chatbotContainer}>
       <div className={styles.output}>
         <h1>TURNERS CAR INSURANCE</h1>
-        <h2> Premium Analysis Machine[PAM]</h2>
+        <h2> PremiumAnalysisMachine [PAM]</h2>
         <p>==========================================</p>
         <p>Please upload an image of a car</p>
         <p>==========================================</p>
         <br />
       </div>
-      <label className={styles.uploadImageContainer}>
-        Upload Image
-        <input type="file" accept="image/*" onChange={handleImageUpload} />
-      </label>
+      <div className={styles.uploadImageContainer}>
+        <label className={styles.uploadImageButton}>
+          Upload Image
+          <input type="file" accept="image/*" onChange={handleImageUpload} />
+        </label>
+
+        <p>{fileName ? shortenFileName(fileName) : "No file chosen"}</p>
+      </div>
       {imagePreview && (
         <div className={styles.imagePreviewContainer}>
           <img
