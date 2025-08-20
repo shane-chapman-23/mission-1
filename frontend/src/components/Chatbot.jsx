@@ -50,7 +50,7 @@ export default function Chatbot() {
   };
 
   //Before uploading a new image the useEffect will revoke the previous imageURL to prevent memory leakage
-  //Just deletes the old image before the new on mounts
+  //Just deletes the old image before the new one mounts
   useEffect(() => {
     return () => {
       if (imagePreview) {
@@ -62,8 +62,11 @@ export default function Chatbot() {
   return (
     <div className={styles.chatbotContainer}>
       <div className={styles.output}>
-        <p>Welcome to TURNERS CAR INSURANCE Premium Analysis Unit</p>
+        <h1>TURNERS CAR INSURANCE</h1>
+        <h2> Premium Analysis Machine[PAM]</h2>
+        <p>==========================================</p>
         <p>Please upload an image of a car</p>
+        <p>==========================================</p>
         <br />
       </div>
       <label className={styles.uploadImageContainer}>
@@ -77,18 +80,18 @@ export default function Chatbot() {
             alt="Uploaded image"
             className={styles.imagePreview}
           />
+          <div className={styles.resultContainer}>
+            {loading && <p>Vehicle Type: Analyzing...</p>}
+            {result?.error && <p style={{color: "red"}}>{result.error}</p>}
+            {result && !result.error && !loading && (
+              <p>
+                Vehicle Type: <b>{result.vehicleType}</b> <br />
+              </p>
+            )}
+          </div>
         </div>
       )}
 
-      <div className={styles.resultContainer}>
-        {loading && <p>Vehicle Type: Analyzing...</p>}
-        {result?.error && <p style={{color: "red"}}>{result.error}</p>}
-        {result && !result.error && !loading && (
-          <p>
-            Vehicle Type: <b>{result.vehicleType}</b> <br />
-          </p>
-        )}
-      </div>
       {loading && <LoadingScreen />}
     </div>
   );

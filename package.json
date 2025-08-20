@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/shane-chapman-23/mission-1#readme",
   "dependencies": {
-    "concurrently": "^9.2.0"
+    "concurrently": "^9.2.0",
+    "dotenv": "^17.2.1"
   }
 }
